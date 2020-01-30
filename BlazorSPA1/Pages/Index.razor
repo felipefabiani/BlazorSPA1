@@ -1,0 +1,27 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime;
+
+<h1>Single Page Blazor App With EF Core 3.1</h1>
+
+    Welcome to Employee Sample app.
+
+<br />
+<br />
+<br />
+<img src="./BlazorEFCore.png" />
+
+<Component1></Component1>
+
+<button class="btn btn-primary" @onclick="Prompt">Click me</button>
+<p>Current count: @MyProperty</p>
+
+<br />
+<br />
+
+@code {
+
+    public string MyProperty;
+
+    protected async Task Prompt() =>
+        MyProperty = await JSRuntime.Prompt("TESTE");
+}
