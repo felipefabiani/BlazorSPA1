@@ -6,14 +6,22 @@ namespace BlazorSPA1.Bases
     public class AddBase<T> : ComponentBase
     {
         public T Model { get; set; }
+        public IService<T> Service { get; set; }
 
-        protected async Task CreateEmployee()
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        public AddBase()
         {
-            await EmployeeService.CreateEmployee(Model);
+        }
+
+        protected async Task Create()
+        {
+            await Service.Create(Model);
             NavigationManager.NavigateTo("listemployees");
         }
 
-        void Cancel()
+        protected void Cancel()
         {
             NavigationManager.NavigateTo("listemployees");
         }

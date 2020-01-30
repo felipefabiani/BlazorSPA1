@@ -29,7 +29,7 @@ namespace BlazorSPA1
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-
+            
             services.AddDbContext<SqlDbContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("SqlDbContext")));
 

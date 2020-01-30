@@ -8,39 +8,38 @@ using System.Threading.Tasks;
 
 namespace BlazorSPA1.Data
 {
-    public class BaseService : IService<Employee>
+    public class BaseService<T> : IService<T>
     {
         private readonly HttpClient httpClient;
+        public string Controller { get; set; }
 
         public BaseService(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
 
-        public async Task<bool> Create(Employee model)
+        public async Task<bool> Create(T model)
         {
-            var ret = await httpClient.PostAsJsonAsync("api/TodoItems", model);
+            var ret = await httpClient.PostAsJsonAsync($"api/{Controller}", model);
             return ret.StatusCode == HttpStatusCode.OK;
         }
 
+        public Task<List<T>> Get()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<bool> Edit(int id, T model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<bool> DeleteById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Edit(int id, Employee model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Employee>> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Employee> GetById(int id)
         {
             throw new NotImplementedException();
         }
