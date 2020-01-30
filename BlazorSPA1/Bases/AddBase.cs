@@ -3,27 +3,19 @@ using System.Threading.Tasks;
 
 namespace BlazorSPA1.Bases
 {
-    public class AddBase<T> : ComponentBase
-    {
-        public T Model { get; set; }
-        public IService<T> Service { get; set; }
-
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
-
-        public AddBase()
-        {
-        }
-
+    public class AddBase<T> : Page<T>
+    { 
         protected async Task Create()
         {
-            await Service.Create(Model);
-            NavigationManager.NavigateTo("listemployees");
+            // await Service.Create(Model);
+            await Task.Delay(10);
+            NavigationManager.NavigateTo("counter", true);
         }
 
-        protected void Cancel()
+        protected Task Cancel()
         {
-            NavigationManager.NavigateTo("listemployees");
+            NavigationManager.NavigateTo("/counter");
+            return Task.CompletedTask;
         }
     }
 }
